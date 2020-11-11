@@ -9,14 +9,17 @@ window.addEventListener('load', ()=> {
 
         socket.emit('joinRoom', room);
 
-        textarea.addEventListener('change', ()=> {
+        socket.on('new user', (data)=> {
+             if(data === 'new') socket.emit('message new user', {message:textarea.value,room});
+        });
+
+        textarea.addEventListener('input', ()=> {
             socket.emit('message', {message:textarea.value,room});
-        })
+        });
 
         socket.on('newMessage', (message)=> {
             textarea.value = message;
-            console.log(message);
-        })
+        });
             
 
     })
