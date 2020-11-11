@@ -1,5 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+const createUniqId = require('./utils/createUniqId')
+
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -9,6 +13,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(createUniqId);
 
 app.get('/', (req,res) => {
     const id = req.id;

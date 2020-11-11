@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+main {
+  min-height: calc(100vh - 30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  width: 80%;
+  height: 600px;
+  resize: none;
+}
+
+footer {
+  text-align: center;
+  height: 30px;
+}
