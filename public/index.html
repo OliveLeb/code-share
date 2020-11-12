@@ -6,14 +6,30 @@
     <title>CodeShare</title>
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js"></script>
+    <script src="codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+    <script src="codemirror/mode/xml/xml.js"></script>
+    <script src="codemirror/addon/edit/closetag.js"></script>
+    <script src="codemirror/addon/edit/closebrackets.js"></script>
+    <script src="codemirror/addon/scroll/simplescrollbars.js"></script>
+    <link
+      rel="stylesheet"
+      href="codemirror/addon/scroll/simplescrollbars.css"
+    />
+    <link rel="stylesheet" href="codemirror/theme/darcula.css" />
   </head>
   <body>
     <header></header>
 
     <main>
-      <textarea name="" id="textarea"></textarea>
+      <textarea name="" id="textarea"><p>i am a paragraph</p></textarea>
+      <!-- <script>
+        var editor = CodeMirror.fromTextArea(
+          document.querySelector('#textarea'),
+          { lineNumbers: true }
+        );
+      </script> -->
     </main>
-    <button id="show">show</button>
     <footer>
       Créé par
       <a

@@ -1,5 +1,16 @@
 window.addEventListener('load', ()=> {
 
+    var editor = CodeMirror.fromTextArea(
+        document.querySelector('#textarea'),{
+            lineNumbers: true,
+            mode:'xml',
+            theme:'darcula',
+            autoCloseTags: true,
+            autoCloseBrackets: true,
+            scrollbarStyle: 'simple'
+        }
+    );    
+
     const socket = io();
 
     const textarea = document.querySelector('#textarea');textarea.value
@@ -24,10 +35,5 @@ window.addEventListener('load', ()=> {
 
     })
 
-    
-    const btn = document.querySelector('#show');
-    btn.addEventListener('click', ()=> {
-        console.log(textarea.value);
-    })
 
 });
