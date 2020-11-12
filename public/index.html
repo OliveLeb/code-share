@@ -4,31 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeShare</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js"></script>
-    <script src="codemirror/lib/codemirror.js"></script>
-    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
-    <script src="codemirror/mode/xml/xml.js"></script>
-    <script src="codemirror/addon/edit/closetag.js"></script>
-    <script src="codemirror/addon/edit/closebrackets.js"></script>
-    <script src="codemirror/addon/scroll/simplescrollbars.js"></script>
-    <link
-      rel="stylesheet"
-      href="codemirror/addon/scroll/simplescrollbars.css"
-    />
-    <link rel="stylesheet" href="codemirror/theme/darcula.css" />
+    <script
+      src="https://kit.fontawesome.com/cf458f1f5b.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <header></header>
+    <header>
+      <h1>Code Share</h1>
+    </header>
 
     <main>
-      <textarea name="" id="textarea"><p>i am a paragraph</p></textarea>
-      <!-- <script>
-        var editor = CodeMirror.fromTextArea(
-          document.querySelector('#textarea'),
-          { lineNumbers: true }
-        );
-      </script> -->
+      <div class="textarea-before">
+        <div class="lineNumber" id="lineNumber"></div>
+        <textarea
+          name=""
+          id="editor"
+          spellcheck="false"
+          wrap="off"
+          nowrap="nowrap"
+        ></textarea>
+      </div>
+      <aside>
+        <p>Partagez votre code en toute simplicité</p>
+        <p>Copiez le lien et envoyez le aux autres participants.</p>
+        <p>
+          <i class="fas fa-exclamation-triangle"></i> Une fois le dernier
+          participant déconnecté de la session, le code sera perdu à tout jamais
+          ! Pensez à le copier ou le télécharger.
+        </p>
+        <button id="download">download</button>
+      </aside>
     </main>
     <footer>
       Créé par
