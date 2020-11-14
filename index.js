@@ -15,7 +15,7 @@ io.on('connection', (socket)=> {
     });
 
     socket.on('message', ({message,room})=> {
-         io.sockets.to(room).emit('newMessage', message);
+         socket.to(room).emit('newMessage', message);
     });
 
     socket.on('message new user', ({message,room}) => {

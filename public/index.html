@@ -9,21 +9,34 @@
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="codemirror/theme/darcula.css" />
+    <script src="codemirror/lib/codemirror.js"></script>
     <script src="js/script.js"></script>
     <script
       src="https://kit.fontawesome.com/cf458f1f5b.js"
       crossorigin="anonymous"
     ></script>
+    <script src="codemirror/addon/mode/loadmode.js"></script>
+    <script src="codemirror/mode/meta.js"></script>
+    <link
+      rel="stylesheet"
+      href="codemirror/addon/scroll/simplescrollbars.css"
+    />
+    <script src="codemirror/addon/scroll/simplescrollbars.js"></script>
+    <script src="codemirror/addon/edit/closebrackets.js"></script>
+    <script src="codemirror/addon/edit/closetag.js"></script>
   </head>
+
   <body>
     <header>
       <h1>Code Share</h1>
+      <p id="menuBtn"><i class="fas fa-bars"></i></p>
     </header>
 
-    <main>
+    <main class="container">
       <div class="textarea-before">
-        <div class="lineNumber" id="lineNumber"></div>
         <textarea
           name=""
           id="editor"
@@ -32,17 +45,40 @@
           nowrap="nowrap"
         ></textarea>
       </div>
-      <aside>
+
+      <aside id="menu">
         <p>Partagez votre code en toute simplicité</p>
         <p>Copiez le lien et envoyez le aux autres participants.</p>
-        <p>
+        <p class="warning">
           <i class="fas fa-exclamation-triangle"></i> Une fois le dernier
           participant déconnecté de la session, le code sera perdu à tout jamais
-          ! Pensez à le copier ou le télécharger.
+          ! Pensez à le copier ou à télécharger le fichier text.
         </p>
-        <button id="download">download</button>
+        <button id="download" title="Télécharger le fichier text">
+          <i class="fas fa-download"></i>
+        </button>
+        <section>
+          <label for="langage">Choississez votre langage :</label>
+          <select name="langage" id="langage">
+            <option value="text" data-mime="text">Texte</option>
+            <option value="clike" data-mime="text/x-crsc">C</option>
+            <option value="javascript" data-mime="text/javascript">
+              Javascript
+            </option>
+            <option value="php" data-mime="text/x-php">PHP</option>
+            <option value="clike" data-mime="text/x-kotlin">Kotlin</option>
+            <option value="clike" data-mime="text/x-java">Java</option>
+            <option value="ruby" data-mime="text/x-ruby">Ruby</option>
+            <option value="go" data-mime="text/x-go">Go</option>
+            <option value="python" data-mime="text/x-python">Python</option>
+            <option value="css" data-mime="text/css">CSS</option>
+            <option value="htmlmixed" data-mime="text/html">HTML</option>
+            <option value="sql" data-mime="text/x-sql">SQL</option>
+          </select>
+        </section>
       </aside>
     </main>
+
     <footer>
       Créé par
       <a

@@ -1,56 +1,52 @@
 window.addEventListener('load', ()=> {
 
 const editor = document.querySelector('#editor');
-const lineNumber = document.querySelector('#lineNumber');
+const langage = document.querySelector('#langage');
+const mime = document.querySelectorAll('[data-mime]');
+const option = document.querySelectorAll('option');
+
+    var codemirror = CodeMirror.fromTextArea(editor, {
+        lineNumbers: true,
+        theme: 'darcula',
+        scrollbarStyle:'simple',
+        autoCloseBrackets:true,
+        autoCloseTags:true
+    });
+
+    langage.addEventListener('change',()=> {
+        if(langage.value === 'text') return codemirror.setOption('mode',false)
+        for(let i=0;i<mime.length;i++) {
+            if(langage.selectedIndex === i) {
+                codemirror.setOption('mode',langage.value)
+                CodeMirror.autoLoadMode(codemirror,mime[i].value)
+            }
+        }
+    });
 
     const socket = io();  
     const room =  location.pathname;
     
     socket.on('connect', ()=> {
         socket.emit('joinRoom', room);
-
         socket.on('new user', (data)=> {
-             if(data === 'new') socket.emit('message new user', {message:editor.value,room});
+             if(data === 'new') socket.emit('message new user', {message:codemirror.getValue(),room});
         });
 
-        editor.addEventListener('input',()=>{
-            socket.emit('message', {message:editor.value,room});
-        })
-        
+        codemirror.on('keyup',(codemirror)=> {
+            socket.emit('message', {message:codemirror.getValue(),room});
+        });
+         
         socket.on('newMessage', (message)=> {
-            editor.value = message;
-            countLine();
+            codemirror.setValue(message)
         });
     });
 
-
-
-    editor.addEventListener('scroll', ()=> {
-        lineNumber.scrollTop = editor.scrollTop;
-    });
-    lineNumber.addEventListener('scroll',()=> {
-        editor.scrollTop = lineNumber.scrollTop;
-    })
-
-function countLine(){
-    let linesCount = editor.value.split('\n');
-
-    //if(message.split('\n').length !== linesCount.length) return;
-
-    while(lineNumber.firstChild){
-        lineNumber.removeChild(lineNumber.firstChild);
-    };
-
-    linesCount.forEach((line,index) => {
-        let number = document.createElement('p');
-        number.innerText = index + 1;
-        lineNumber.appendChild(number);
-    });
-};
 
 
 
 function download(filename,text) {
+    filename = `codeshare-${Date.now()}.txt`;
+    text = editor.value;
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
@@ -64,8 +60,13 @@ function download(filename,text) {
 };
 
 const downloadBtn = document.querySelector('#download');
-downloadBtn.addEventListener('click',()=>{
-    download('codeshare.txt',editor.value);
+downloadBtn.addEventListener('click',download);
+
+const menuBtn = document.querySelector('#menuBtn');
+const menu = document.querySelector('#menu');
+menuBtn.addEventListener('click', ()=> {
+    menu.classList.toggle('active');
 });
+
 
 });

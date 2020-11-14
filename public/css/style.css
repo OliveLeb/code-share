@@ -8,6 +8,9 @@
   color: #a8b6c6;
   background-color: #3b3d3f;
 }
+body {
+  overflow: hidden;
+}
 
 header {
   height: 50px;
@@ -19,42 +22,23 @@ header {
   display: flex;
   flex-flow: row nowrap;
 }
-textarea {
-  padding: 10px 20px;
+.CodeMirror {
   height: 100%;
-  width: calc(100% - 50px);
-  background-color: #2b2b2b;
-  font-size: 1.2rem;
-  line-height: 1.5rem;
-  resize: none;
-  outline: none;
-  border: none;
+  width: 100%;
+  border: 1px solid black;
 }
-.lineNumber {
-  font-size: 0.8rem;
-  line-height: 1.5rem;
-  margin: auto;
-  padding: 10px 3px;
-  height: 100%;
-  width: 50px;
-  background-color: #313335;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.lineNumber::-webkit-scrollbar {
-  display: none;
-}
-.lineNumber p {
-  text-align: right;
-  background-color: #313335;
-  color: #63686f;
-}
-/* #313335 */
 
 header {
   text-align: center;
 }
+#menuBtn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  display: none;
+}
+
 h1 {
   text-transform: uppercase;
 }
@@ -64,12 +48,48 @@ main {
   display: flex;
   justify-content: space-around;
 }
+
 aside {
   width: 20%;
   min-height: calc(100vh - 30px - 50px);
 }
-i {
+@media all and (max-width: 760px) {
+  aside {
+    /*display: none;*/
+    position: absolute;
+    width: 60vw;
+    top: 50px;
+    right: -60vw;
+    transition: all 1s ease;
+    opacity: 0.9;
+    padding: 10px;
+  }
+  .active {
+    right: 0;
+    transition: all 1s ease;
+  }
+  .textarea-before {
+    width: calc(100vw - 10px);
+  }
+  #menuBtn {
+    display: block;
+  }
+}
+
+aside p {
+  margin: 20px 0;
+}
+#download {
+  border: 1px solid #2b2b2b;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.warning i {
   color: red;
+}
+i {
+  font-size: 1.5rem;
+  margin: 5px;
 }
 
 footer {
