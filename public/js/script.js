@@ -4,6 +4,7 @@ const editor = document.querySelector('#editor');
 const langage = document.querySelector('#langage');
 const mime = document.querySelectorAll('[data-mime]');
 
+    CodeMirror.modeURL = "../scripts/codemirror/mode/%N/%N.js";
     var codemirror = CodeMirror.fromTextArea(editor, {
         lineNumbers: true,
         theme: 'darcula',
@@ -13,15 +14,15 @@ const mime = document.querySelectorAll('[data-mime]');
         styleActiveLine:true
     });
 
-    langage.addEventListener('change',()=> {
+    CodeMirror.on(langage,'change',()=>{
         if(langage.value === 'text') return codemirror.setOption('mode',null)
         for(let i=0;i<mime.length;i++) {
             if(langage.selectedIndex === i) {
-                codemirror.setOption('mode',langage.value)
-                CodeMirror.autoLoadMode(codemirror,mime[i].value)
+                codemirror.setOption('mode',langage.value);
+                CodeMirror.autoLoadMode(codemirror,mime[i].value);
             }
         }
-    });
+    })
 
     const socket = io();  
     const room =  location.pathname;
