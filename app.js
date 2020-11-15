@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path')
 const app = express();
 const createUniqId = require('./utils/createUniqId')
 
@@ -21,6 +22,7 @@ app.get('/', (req,res) => {
 })
 
 app.use(express.static('public'));
+app.use('/scripts',express.static(path.join(__dirname,'node_modules')));
 
 app.get('/:id', (req,res) => {
     res.sendFile(`${__dirname}/public/index.html`);
