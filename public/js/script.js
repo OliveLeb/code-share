@@ -69,5 +69,13 @@ menuBtn.addEventListener('click', ()=> {
     menu.classList.toggle('active');
 });
 
+const showUrl = document.querySelector('.url');
+showUrl.value = room;
+showUrl.addEventListener('click',()=>{
+    showUrl.select();
+    showUrl.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+})
+
 
 });
