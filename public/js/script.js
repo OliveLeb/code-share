@@ -3,18 +3,18 @@ window.addEventListener('load', ()=> {
 const editor = document.querySelector('#editor');
 const langage = document.querySelector('#langage');
 const mime = document.querySelectorAll('[data-mime]');
-const option = document.querySelectorAll('option');
 
     var codemirror = CodeMirror.fromTextArea(editor, {
         lineNumbers: true,
         theme: 'darcula',
         scrollbarStyle:'simple',
         autoCloseBrackets:true,
-        autoCloseTags:true
+        autoCloseTags:true,
+        styleActiveLine:true
     });
 
     langage.addEventListener('change',()=> {
-        if(langage.value === 'text') return codemirror.setOption('mode',false)
+        if(langage.value === 'text') return codemirror.setOption('mode',null)
         for(let i=0;i<mime.length;i++) {
             if(langage.selectedIndex === i) {
                 codemirror.setOption('mode',langage.value)

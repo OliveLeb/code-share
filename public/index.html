@@ -27,6 +27,7 @@
     <script src="codemirror/addon/scroll/simplescrollbars.js"></script>
     <script src="codemirror/addon/edit/closebrackets.js"></script>
     <script src="codemirror/addon/edit/closetag.js"></script>
+    <script src="codemirror/addon/selection/active-line.js"></script>
   </head>
 
   <body>
@@ -37,13 +38,7 @@
 
     <main class="container">
       <div class="textarea-before">
-        <textarea
-          name=""
-          id="editor"
-          spellcheck="false"
-          wrap="off"
-          nowrap="nowrap"
-        ></textarea>
+        <textarea name="" id="editor" spellcheck="false"></textarea>
       </div>
 
       <aside id="menu">
@@ -58,7 +53,7 @@
           <i class="fas fa-download"></i>
         </button>
         <section>
-          <label for="langage">Choississez votre langage :</label>
+          <label for="langage">Choisissez votre langage :</label>
           <select name="langage" id="langage">
             <option value="text" data-mime="text">Texte</option>
             <option value="clike" data-mime="text/x-crsc">C</option>
@@ -80,14 +75,16 @@
     </main>
 
     <footer>
-      Créé par
-      <a
-        href="https://cv.lebelolivier.fr"
-        tar$="_blank"
-        ref="noopener noreferrer"
-        >Olivier Lebel</a
-      >
-      - 2020
+      <p>
+        Créé par
+        <a
+          href="https://cv.lebelolivier.fr"
+          tar$="_blank"
+          ref="noopener noreferrer"
+          >Olivier Lebel</a
+        >
+        - 2020
+      </p>
     </footer>
     <script src="/socket.io/socket.io.js"></script>
   </body>
